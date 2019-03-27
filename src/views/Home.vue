@@ -7,7 +7,6 @@
 
 <script>
 // @ is an alias to /src
-// import HelloWorld from '@/components/HelloWorld.vue';
 import axios from 'axios';
 import Todos from '../components/Todos.vue';
 import AddTodo from '../components/AddTodo.vue';
@@ -15,7 +14,6 @@ import AddTodo from '../components/AddTodo.vue';
 export default {
   name: 'home',
   components: {
-    // HelloWorld,
     Todos,
     AddTodo,
   },
@@ -29,7 +27,6 @@ export default {
       axios.delete(`https://jsonplaceholder.typicode.com/todos/${id}`)
         .then(res => this.todos = this.todos.filter(todo => todo.id !== id))
         .catch(err => console.log(err));
-      // this.todos = this.todos.filter(todo => todo.id !== id);
     },
     addTodo(newTodo) {
       const { title, completed } = newTodo;
@@ -42,7 +39,7 @@ export default {
     },
   },
   created() {
-    axios.get('https://jsonplaceholder.typicode.com/todos')
+    axios.get('https://jsonplaceholder.typicode.com/todos?_limit=5')
       .then(res => this.todos = res.data)
       .catch(err => console.log(err));
   },
