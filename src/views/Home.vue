@@ -8,6 +8,7 @@
 <script>
 // @ is an alias to /src
 // import HelloWorld from '@/components/HelloWorld.vue';
+import axios from 'axios';
 import Todos from '../components/Todos.vue';
 import AddTodo from '../components/AddTodo.vue';
 
@@ -16,40 +17,38 @@ export default {
   components: {
     // HelloWorld,
     Todos,
-    AddTodo
+    AddTodo,
   },
   data() {
     return {
-      todos: [
-        {
-          id: 1,
-          title: 'Todo one',
-          completed: false,
-        },
-        {
-          id: 2,
-          title: 'Todo two',
-          completed: true,
-        },
-        {
-          id: 3,
-          title: 'Todo three',
-          completed: false,
-        },
-      ],
+      todos: [],
     };
   },
   methods: {
     deleteTodo(id) {
-      this.todos = this.todos.filter(todo => todo.id !== id);
+      axios.delete(`https://jsonplaceholder.typicode.com/todos/${id}`)
+        .then(res => this.todos = this.todos.filter(todo => todo.id !== id))
+        .catch(err => console.log(err));
+      // this.todos = this.todos.filter(todo => todo.id !== id);
     },
     addTodo(newTodo) {
-      this.todos = [...this.todos, newTodo];
-    }
-  }
+      const { title, completed } = newTodo;
+      axios.post('https://jsonplaceholder.typicode.com/todos', {
+        title,
+        completed,
+      })
+        .then(res => this.todos = [...this.todos, res.data])
+        .catch(err => console.log(err));
+    },
+  },
+  created() {
+    console.log('created');
+    axios.get('https://jsonplaceholder.typicode.com/todos')
+      .then(res => this.todos = res.data)
+      .catch(err => console.log(err));
+  },
 };
 </script>
 <style scoped>
 
 </style>
-

@@ -14,8 +14,8 @@ export default {
   methods: {
     markComplete() {
       this.todo.completed = !this.todo.completed;
-    }
-  }
+    },
+  },
 };
 </script>
 

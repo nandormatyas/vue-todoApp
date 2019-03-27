@@ -8,28 +8,28 @@
 </template>
 
 <script>
-import uuid from 'uuid';
+// import uuid from 'uuid';
 
 export default {
-  name: "AddTodo",
+  name: 'AddTodo',
   data() {
     return {
       title: '',
-    }
+    };
   },
   methods: {
     addTodo(e) {
       e.preventDefault();
       const newTodo = {
-        id: uuid.v4(),
+        // id: uuid.v4(),
         title: this.title,
         completed: false,
-      }
+      };
       this.$emit('add-todo', newTodo);
       this.title = '';
-    }
-  }
-}
+    },
+  },
+};
 </script>
 
 <style scoped>
@@ -44,4 +44,3 @@ export default {
     flex: 2;
   }
 </style>
-
