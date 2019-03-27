@@ -22,4 +22,12 @@
 #nav a.router-link-exact-active {
   color: #42b983;
 }
+.btn {
+  display: inline-block;
+  border: none;
+  background: #555;
+  color: #fff;
+  padding: 7px 20px;
+  cursor: pointer;
+}
 </style>
