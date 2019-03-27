@@ -42,7 +42,6 @@ export default {
     },
   },
   created() {
-    console.log('created');
     axios.get('https://jsonplaceholder.typicode.com/todos')
       .then(res => this.todos = res.data)
       .catch(err => console.log(err));
